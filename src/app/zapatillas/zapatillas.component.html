@@ -1,0 +1,63 @@
+<h2>{{ titulo }}</h2>
+
+<ul>
+    <li>Rebook</li>
+    <li>Adidas</li>
+    <li>Nike</li>
+</ul>
+<h2>Por medio del Array</h2>
+
+<p>Añadir Marca</p>
+<p>
+<input type="text" [(ngModel)]= "miMarca" (blur)="onBlur()" (keyup.enter)="mostrarPalabra()">
+<button (click)="getMarca()">Mostrar Marca</button>
+<button (click)="addMarca()">Añadir Marca</button>
+</p>
+<p><strong> {{miMarca}} </strong></p>
+
+<p>Compra los Tenis de las mejores marcas</p>
+<ul>
+    <li *ngFor="let marca of marcas; let indice = index">{{indice + ' - ' + marca}}
+    <button (click)="borrarMarca(indice)">Borrar</button>
+    </li>
+</ul>
+
+<p>Los tennis que tenemos disponibles son:</p>
+
+<ul>
+    <li *ngFor="let tenis of zapatillas">
+        <span [ngStyle]="{
+            'text-decoration': !tenis.stock ? 'line-through' : 'none'
+        }"> 
+            
+            {{tenis.nombre}} - <strong 
+            [class.altoPrecio]="tenis.precio >= 80"
+            [ngClass]="{ 
+                'fondoRojo': tenis.precio > 100,
+                'subrayado': tenis.marca == 'Nike' || 'nike'}" > ${{ tenis.precio }} </strong> 
+        
+                <span *ngIf="tenis.precio<80" 
+                [style.background]="tenis.precio<80 ? 'Red' : 'transparent'"
+                [style.color]="tenis.precio<80 ? 'white' : 'black'" >  ! EN OFERTA ¡  </span>
+
+        </span>
+    </li>
+</ul>
+
+<p>El color de la mayoria de nuestros Tenis es:</p>
+<input type="text" [(ngModel)]="color">
+
+<ul [ngSwitch]="color">
+    <li *ngSwitchCase="'yellow'">
+    El color predominate es el <span [ngStyle]="{'background-color': color}">Amarillo</span>.
+    </li>
+    <li *ngSwitchCase="'red'">
+    El color predominate es el <span [ngStyle]="{'background-color': color, 'color': 'white'}">Rojo</span>.
+    </li>
+    <li *ngSwitchCase="'blue'">
+        El color predominate es el <span [ngStyle]="{'background-color': color , 'color': 'white'}">Azul</span>.
+    </li>
+    <li *ngSwitchCase="'orange'">
+        El color predominate es el <span [ngStyle]="{'background-color': color}">Naranja</span>.
+    </li>
+</ul>

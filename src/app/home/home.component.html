@@ -1,0 +1,28 @@
+<h2>Pagina Principal</h2>
+
+<h5>CON "if else"</h5>
+<div *ngIf="identificadoIf; else noIdentificadoIf">
+    <h3>Estas Identificado en la Aplicación.</h3>
+    <button (click)="unSetIdentificadoIf()">Borrar Identificación</button>
+</div>
+
+<h5>CON "then"</h5>
+
+<div *ngIf="identificadoThen; then SiIdentificado else noIdentificadoThen"> </div>
+<ng-template #SiIdentificado>
+    <h3>Estas Identificado en la Aplicación.</h3>
+    <button (click)="unSetIdentificadoThen()">Borrar Identificación</button>
+</ng-template>
+
+<p>home works!</p>
+
+<!--Parte del else-->
+<ng-template #noIdentificadoIf>
+    <p>No estas Identificado pulsa este boton para Identificarte.</p>
+    <button (click)="setIdentificadoIf()">Identificarse</button>
+</ng-template>
+
+<ng-template #noIdentificadoThen>
+    <p>No estas Identificado pulsa este boton para Identificarte.</p>
+    <button (click)="setIdentificadoThen()">Identificarse</button>
+</ng-template>

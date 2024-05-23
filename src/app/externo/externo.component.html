@@ -1,0 +1,49 @@
+<h2>Crear Usuario</h2>
+<form #newUser="ngForm" (ngSubmit)="onSubmit(newUser)">
+    <p>
+        <label for="name">Nombre</label> <br>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="new_user.name" required pattern="[a-zA-Z]+">
+        <span *ngIf="name.touched &&!name.valid">El Nombre no es valido.</span> <br>
+    </p>
+    <p>
+        <label for="job">Trabajo</label> <br>
+        <input type="text" name="job" #job="ngModel" [(ngModel)]="new_user.job" required pattern="[a-zA-Z]+">
+        <span *ngIf="job.touched &&!job.valid">El trabajo no es valido.</span> <br>
+    </p>
+
+    <input type="submit" value="Guardar Usuario" [disabled]="!newUser.form.valid">
+
+</form>
+
+<div *ngIf="usuario_guardado">
+    <h2>El Usuario se ha guardado correctamente.</h2>
+    <h3> {{usuario_guardado.name}} </h3>
+    <h4> {{usuario_guardado.job}} </h4>
+</div>
+
+<hr>
+
+{{ fecha }} <br>
+{{ fecha | date:'dd/MM/yy'}} <br>
+{{ fecha | date:'fullDate' | uppercase}} <br>
+{{ 'Hola mundo usando pipes.' | uppercase}} <br>
+
+{{ 88 | calculadora: 2}}
+<hr>
+
+<input type="number" [(ngModel)]="userId" (keyup.enter)="cargaUsuario()" pattern="[0-9]*">
+<br>
+<br>
+<div *ngIf="!user">
+    <img src="https://usagif.com/wp-content/uploads/loading-11.gif" width="200px" alt="Loading">
+</div>
+
+<div *ngIf="user">
+        <img src="{{user.avatar}}" width="200px" alt="Foto de perfil.">
+        <h2>{{ user.first_name + ' ' + user.last_name }}</h2>
+</div>
+<p>externo works!</p>
+
+
+
+
